@@ -10,6 +10,8 @@
 #  four would have to somehow be placed in-line in a usable way. It should be noted that the btn_flsm module
 #  should work with switch or button inputs, as the debouncer and pulser modules (see btn_flsm for more detail)
 #  will work fine with a switch.
+# The Basys2 also is only supported by Xilinx ISE, not Vivado, and as such, this file would need to be replaced by a UCF file, 
+# ideally an edited version of its Master UCF
 # To port to a board with a different base clock speed, the parameters passed to the cc counter module 
 #  from the vga module would have to be changed. See the vga file for more detail on how my parameters were selected.
 
