@@ -7,9 +7,11 @@
 #  require rewrites of some of the Verilog source, or rerouting of some I/O.
 # For instance, the Basys2 has four in-line buttons, instead of the five d-pad buttons that the Nexys4 has.
 # In order to port to that board, one of the five buttons would have to be moved to a switch, and the other
-#  four would have to somehow be placed in-line in a usable way.
-# To port to a board with a different base clock speed, the parameters passed to the clock_divider module 
-#  from the main module would have to be changed.
+#  four would have to somehow be placed in-line in a usable way. It should be noted that the btn_flsm module
+#  should work with switch or button inputs, as the debouncer and pulser modules (see btn_flsm for more detail)
+#  will work fine with a switch.
+# To port to a board with a different base clock speed, the parameters passed to the cc counter module 
+#  from the vga module would have to be changed. See the vga file for more detail on how my parameters were selected.
 
 # Clock signal at 100MHz (10ns period)
 #Bank = 35, Pin name = IO_L12P_T1_MRCC_35,					Sch name = CLK100MHZ
