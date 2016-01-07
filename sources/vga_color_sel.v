@@ -31,16 +31,17 @@ module vga_color_sel(
     assign saddr = {u, d};
     
     lut #(
-        .AW(16),
-        .DW(12),
-        .F("sprites.hex")
+        .AW(16), // address width
+        .DW(12), // data width
+        .F("sprites.hex") // this file needs to be included in the project, using vivado, I added it as source, then changed the file type to a "Memory Initialization File"
     ) m0 (
         .clk(clk),
         .rst(rst),
-        .A({sprite, uoffset[6:0], doffset[6:0]}),
+        .A({sprite, uoffset[6:0], doffset[6:0]}),//I am using 128x128 sized sprites, 2**7 = 128
         .D(color)
     );
     
+    // determines which row of cells the vga is looking at, and where in that row the pixel is located
     shift_divider #(
         .DW(4)
     ) sdV (
@@ -50,6 +51,7 @@ module vga_color_sel(
         .R(uoffset)
     );
     
+    // determines which column of cells the vga is looking at, and where in that column the pixel is located
     shift_divider #(
         .DW(4)
     ) sdH (
