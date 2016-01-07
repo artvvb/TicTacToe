@@ -9,8 +9,8 @@ module go_decode(
     always@(gameover, addr)
         if (~gameover[9])
             color = 12'h000;
-        else case (addr)
-            4'h0: color = (gameover[0] | gameover[3] | gameover[6]              ) ? 12'h0f0 : 12'h000;//2 == green
+        else case (addr) // see go_encode for descriptions of indices
+            4'h0: color = (gameover[0] | gameover[3] | gameover[6]              ) ? 12'h0f0 : 12'h000;//0F0 == green
             4'h1: color = (gameover[0] | gameover[4]                            ) ? 12'h0f0 : 12'h000;
             4'h2: color = (gameover[0] | gameover[5] | gameover[7]              ) ? 12'h0f0 : 12'h000;
             4'h4: color = (gameover[1] | gameover[3]                            ) ? 12'h0f0 : 12'h000;
@@ -21,4 +21,4 @@ module go_decode(
             4'ha: color = (gameover[2] | gameover[5] | gameover[6]              ) ? 12'h0f0 : 12'h000;
             default: color = 12'h000;
         endcase
-endmodule
+
