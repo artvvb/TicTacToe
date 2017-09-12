@@ -21,4 +21,4 @@ module go_decode(
             4'ha: color = (gameover[2] | gameover[5] | gameover[6]              ) ? 12'h0f0 : 12'h000;
             default: color = 12'h000;
         endcase
-
+endmodule
