@@ -19,7 +19,10 @@ module main(
     //  RGB LED PINS
     output RGB1_Red,
     output RGB1_Green,
-    output RGB1_Blue
+    output RGB1_Blue,
+    //  Pmod ports for debugging
+    output [7:0] JA,
+    output [7:0] JB
     );
     //internal buses
     wire [9:0] gameover, gameover_vga;
@@ -28,6 +31,13 @@ module main(
     wire wen, rst, save;
     
     assign rst = ~btnCpuReset; // Nexys4 cpu reset button is ACTIVE LOW, meaning when the button is held down, the signal goes low. I prefer posedge rst for coding style, so inverted the signal
+    
+    assign JA[7:4] = vgaR;
+    assign JA[3:0] = vgaG;
+    assign JB[7:4] = vgaB;
+    assign JB[3] = HS;
+    assign JB[2] = VS;
+    assign JB[1:0] = gameover[1:0];
     
     //handles user inputs, edit if needed
     btn_flsm m0 (
